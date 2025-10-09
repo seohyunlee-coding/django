@@ -46,14 +46,14 @@ django-imageBlog/
 ```
 
 ## ⚙️ 프로그램 설치방법
-1. Python 버전 확인
+### 1. Python 버전 확인
 - Python 3.13 버전이 설치되어 있는지 확인합니다.
 
 ```bash
 python --version
 ```
 
-2. 프로젝트 클론
+### 2. 프로젝트 클론
 - GitHub에서 프로젝트를 로컬로 복제합니다.
 
 ```bash
@@ -61,18 +61,18 @@ git clone https://github.com/seohyunlee-coding/Python-Image-Blog
 cd django-imageBlog/mysite
 ```
 
-3. 가상환경 생성 및 활성화 (Windows 기준)
+### 3. 가상환경 생성 및 활성화 (Windows 기준)
 ```bash
 python -m venv .\venv
 venv\Scripts\activate
 ```
 
-4. 데이터베이스 마이그레이션
+### 4. 데이터베이스 마이그레이션
 ```bash
 python manage.py migrate
 ```
 
-5. 개발 서버 실행
+### 5. 개발 서버 실행
 ```bash
 python manage.py runserver
 ```
@@ -81,9 +81,9 @@ python manage.py runserver
 - PythonAnywhere로 배포한 사이트: https://cwijiq.pythonanywhere.com/
   
 ## 🚀 API 테스트 방법
-1. /api_root 경로에서 테스트
+### 1. /api_root 경로에서 테스트
 
-2. curl로 테스트
+### 2. curl로 테스트
 ```bash
 curl -X POST -S -H "Accept: application/json" -H "Authorization: Token [토큰]" \
 -F "title=제목" \
