@@ -6,6 +6,7 @@ from django.utils import timezone
 from rest_framework import viewsets
 from rest_framework import generics
 from .serializers import PostSerializer
+from django.db.models import Q
 
 
 class blogImage(viewsets.ModelViewSet):
@@ -17,6 +18,22 @@ class PostList(generics.ListAPIView):
     """API: 게시물 리스트를 JSON으로 반환합니다."""
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+
+
+class PostSearch(generics.ListAPIView):
+    """검색 API: 쿼리파라미터 'q'로 제목/본문을 대소문자 구분없이 검색합니다.
+
+    사용 예: GET /api/posts/search/?q=django
+    결과는 published_date가 현재 시각보다 이전인(게시된) 게시물만 반환합니다.
+    """
+    serializer_class = PostSerializer
+
+    def get_queryset(self):
+        q = self.request.query_params.get('q', '')
+        qs = Post.objects.filter(published_date__lte=timezone.now())
+        if q:
+            qs = qs.filter(Q(title__icontains=q) | Q(text__icontains=q))
+        return qs.order_by('-published_date')
 
 
 class PostDetail(generics.RetrieveAPIView):

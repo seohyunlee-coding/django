@@ -15,6 +15,7 @@ urlpatterns = [
     path('js_test/', views.js_test, name='js_test'),
     # API endpoints (readable JSON)
     path('api/posts/', views.PostList.as_view(), name='api_post_list'),
+    path('api/posts/search/', views.PostSearch.as_view(), name='api_post_search'),
     path('api/posts/<int:pk>/', views.PostDetail.as_view(), name='api_post_detail'),
     path('api_root/', include(router.urls)),
 ] 
